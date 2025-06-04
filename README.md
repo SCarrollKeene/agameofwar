@@ -1,5 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
-
 ## A Game of War — Enhanced Card Game
 
 A Game of War is a web-based, two-player card game inspired by the classic game of War, featuring modern visuals, sound effects, and unique card abilities for added strategy and replayability.
@@ -117,6 +115,4 @@ A Game of War is a web-based, two-player card game inspired by the classic game 
 This project is for educational and personal use. Sound assets are used under their respective licenses.
 
 ---
-
-Enjoy A Game of War and may the best strategist win!
 
