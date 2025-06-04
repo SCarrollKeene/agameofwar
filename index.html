@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>War Card Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="gear-container">
+    <span id="gear-icon" title="Options">⚙️</span>
+    <span id="gear-label">Options</span>
+  </div>
+
+  <div id="options-menu">
+    <div class="menu-content">
+      <h3>Options</h3>
+      <label>
+        <input type="checkbox" id="toggle-abilities" checked>
+        Enable Card Abilities
+      </label>
+      <label>
+        <input type="checkbox" id="toggle-audio" checked>
+        Enable Audio
+      </label>
+      <label>
+        <span>Sound Volume</span>
+        <input type="range" id="sound-volume" min="0" max="1" step="0.01" value="1">
+        <span id="sound-volume-value">100%</span>
+      </label>
+
+      <button id="close-options-btn" type="button">Close</button>
+    </div>
+  </div>
+
+  <div id="game">
+    <div class="health-bars">
+      <div class="health-bar" id="player1-health"></div>
+      <div class="health-bar" id="player2-health"></div>
+    </div>
+    <div id="score">Score: 0</div>
+    <div class="players-container">
+      <div class="player-area" id="player1-area">
+        <h2>You</h2>
+        <div class="card-row" id="player1-cards"></div>
+        <div class="deck-count" id="player1-count"></div>
+        <div class="discard-count" id="player1-discard-count"></div>
+      </div>
+      <div class="center-area">
+        <div id="message"></div>
+      </div>
+      <div class="player-area" id="player2-area">
+        <h2>Computer</h2>
+        <div class="card-row" id="player2-cards"></div>
+        <div class="deck-count" id="player2-count"></div>
+        <div class="discard-count" id="player2-discard-count"></div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <button id="draw-btn">Draw</button>
+    </div>
+  </div>
+  <div id="card-tooltip"></div>
+
+  <!-- 7 Card Ability Modal -->
+  <div id="choose-card-modal" style="display:none;">
+    <div class="choose-card-content">
+      <h2 id="choose-card-title"></h2>
+      <p>Choose which card to play:</p>
+      <div id="choose-card-options"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

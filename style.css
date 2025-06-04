@@ -1,0 +1,493 @@
+﻿body {
+    font-family: sans-serif;
+    background: #2e2e2e;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+}
+
+.health-bars {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: 30px 0 10px 0;
+    width: 100%;
+}
+
+.health-bar {
+    display: flex;
+    gap: 8px;
+}
+
+.heart {
+    width: 30px;
+    height: 30px;
+}
+
+    .heart::before {
+        content: "❤️";
+        font-size: 28px;
+        transition: opacity 0.3s;
+    }
+
+    .heart.half::before {
+        opacity: 0.5;
+        animation: pulse 1s ease-in-out infinite alternate;
+    }
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.heart.empty::before {
+    opacity: 0.2;
+}
+
+#score {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.players-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.player-area {
+    width: 340px;
+    min-width: 220px;
+    max-width: 100%;
+    margin: 0 20px;
+    box-sizing: border-box;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-height: 400px;
+    margin: 0 auto;
+    transition: flex-direction 0.3s;
+    width: 100%;
+}
+
+    .card-row.multiple-cards {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 10px 0;
+        width: 100%;
+        overflow-x: visible;
+    }
+
+#player1-cards.card-row.multiple-cards {
+    justify-content: flex-start !important;
+}
+
+#player2-cards.card-row.multiple-cards {
+    justify-content: flex-end !important;
+}
+
+.card {
+    flex-shrink: 0;
+    width: 90px !important;
+    height: 120px !important;
+    font-size: 1.2em;
+    background: transparent;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px #0004;
+    position: relative;
+    z-index: 1;
+    perspective: 1000px;
+    cursor: default;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card.flipping .card-inner {
+    transform: rotateY(0deg);
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.card-front,
+.card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    padding: 5px 2px 5px 2px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card-front {
+    background: #fff;
+    color: #222;
+    font-size: 1em;
+    box-shadow: 0 4px 12px #0004;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    background: #333;
+    color: #fff;
+    font-size: 2em;
+    border: 2px solid #888;
+    transform: rotateY(180deg);
+}
+
+.deck-count {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+.discard-count {
+    font-size: 0.95em;
+    color: #f1c40f;
+    margin-top: 2px;
+}
+
+.center-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    position: relative;
+}
+
+#message {
+    min-height: 40px;
+    font-size: 1.1em;
+    margin: 30px 0;
+    word-break: break-word;
+}
+
+.bottom-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding: 20px 0;
+    background: transparent;
+}
+
+#draw-btn,
+.purple-btn,
+#play-again-btn {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    min-width: 150px;
+    box-shadow: 0 2px 6px #0003;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+#draw-btn {
+    background: #f39c12;
+    color: #fff;
+}
+
+.purple-btn,
+#play-again-btn {
+    background: #5f27cd;
+    color: #fff;
+}
+
+    .purple-btn:hover,
+    .purple-btn:focus,
+    #play-again-btn:hover,
+    #play-again-btn:focus {
+        background: #4326a3;
+        box-shadow: 0 4px 12px #2e2e2e44;
+    }
+
+#draw-btn:focus,
+#draw-btn:hover {
+    background: #b96a0f;
+    box-shadow: 0 4px 12px #2e2e2e44;
+}
+
+#gear-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 1001;
+}
+
+#gear-icon {
+    cursor: pointer;
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px #000);
+}
+
+#gear-label {
+    font-size: 1.1em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#options-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100vh;
+    background: #3a3a3a;
+    padding: 30px 20px;
+    transition: right 0.3s;
+    z-index: 1000;
+    box-shadow: -4px 0 12px #0004;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    #options-menu.show {
+        right: 0;
+    }
+
+.menu-content {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+    .menu-content label {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+
+#sound-volume {
+    width: 120px;
+    margin-top: 4px;
+}
+
+#sound-volume-value {
+    margin-left: 4px;
+    margin-top: 2px;
+    font-size: 0.95em;
+    color: #f1c40f;
+}
+
+.menu-content label span {
+    margin-bottom: 2px;
+}
+
+.menu-content label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.menu-content label input[type="range"] {
+    margin-bottom: 2px;
+}
+
+#close-options-btn {
+    margin-top: 32px;
+    padding: 12px 36px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    transition: border 0.2s, color 0.2s;
+    outline: none;
+    display: block;
+    width: 100%;
+}
+
+    #close-options-btn:hover,
+    #close-options-btn:focus {
+        color: #f39c12;
+        border-color: #f39c12;
+    }
+
+/* Card hover effect */
+.card.hoverable {
+    transition: transform 0.2s ease-out;
+    cursor: help;
+}
+
+    .card.hoverable:hover {
+        transform: translateY(-10px);
+        z-index: 100;
+    }
+
+/* Tooltip */
+#card-tooltip {
+    position: absolute;
+    background: #fff;
+    color: #333;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 220px;
+    font-size: 0.9em;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    transform: translateX(-50%);
+}
+
+    #card-tooltip.show {
+        opacity: 1;
+    }
+
+    #card-tooltip h3 {
+        margin: 0 0 8px 0;
+        font-size: 1.1em;
+        color: #5f27cd;
+    }
+
+    #card-tooltip p {
+        margin: 0;
+        line-height: 1.4;
+    }
+
+/* 7 Card Ability Modal */
+#choose-card-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.choose-card-content {
+    background: #222;
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#choose-card-options {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.choose-card-option {
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: #444;
+    transition: border 0.2s, background 0.2s;
+    font-size: 1.3em;
+    min-width: 60px;
+}
+
+    .choose-card-option:hover {
+        border: 2px solid #f39c12;
+        background: #333;
+    }
+
+@media (min-width: 768px) {
+    .card {
+        width: 120px !important;
+        height: 160px !important;
+        font-size: 1.2em;
+    }
+
+    .card-front,
+    .card-back {
+        font-size: 1.2em;
+    }
+
+    .player-area {
+        width: 400px;
+        min-width: 220px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        width: 70px !important;
+        height: 100px !important;
+        font-size: 1em;
+    }
+
+    .card-front,
+    .card-back {
+        font-size: 1em;
+    }
+
+    .player-area {
+        width: 98vw;
+        min-width: 0;
+        margin: 0;
+    }
+}
