@@ -82,7 +82,7 @@ A Game of War is a web-based, two-player card game inspired by the classic game 
 | 2 | Draw Two | Draw an additional card for this round. |
 | 3 | Half-Heart Heal | Gain half a heart (works in all rounds and wars). |
 | 5 | Swap | Swap the top card of your deck with the top card of your discard pile. |
-| 7 | Draw and Choose | Draw two cards and choose which to play; other goes to deck bottom. |
+| 7 | Draw and Choose : Bugged | Draw two cards and choose which to play; other goes to deck bottom. |
 
 
 ---
